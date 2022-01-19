@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const userControllers = require('../controllers/userControllers');
+const recipeControllers = require('../controllers/recipesControllers');
+const { authValidate } = require('./auth/validateJwt');
 const error = require('./middlewares/errosMid');
 
 const app = express();
@@ -14,6 +16,10 @@ app.get('/', (request, response) => {
 
 app.post('/users', userControllers.getUserController);
 app.post('/login', userControllers.getLoginController);
+app.post('/recipes', authValidate, recipeControllers.createRecipesCont);
+app.get('/recipes', recipeControllers.getAllCont);
+app.get('/recipes/:id', recipeControllers.getByIdCont);
+app.put('/recipes/:id', authValidate, recipeControllers.updateRecipeCont);
 app.use(error);
 
 module.exports = app;

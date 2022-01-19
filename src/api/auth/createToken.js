@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const secret = 'segredo';
 
 const createToken = (user) => {
-  const { password: _, ...payload } = user;
+const { password: _, ...payload } = user;
   const jwtConfig = {
-    expiresIn: '14d',
+    expiresIn: '13d',
     algorithm: 'HS256',
   };
 
