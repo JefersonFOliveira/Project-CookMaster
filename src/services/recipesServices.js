@@ -27,9 +27,21 @@ const updateRecipeService = async (id, name, ingredients, preparation) => {
   return editedRecipe;
 };
 
+const deleteRecipeService = async (id) => {
+  const recipe = await recipesModel.deleteRecipe(id);
+  return recipe;
+};
+
+const updateImageService = async ({ id, image }) => {
+  const recipe = await recipesModel.updateImage(id, image);
+  return recipe;
+};
+
 module.exports = {
   createRecipeService,
   getAllService,
   getByIdService,
   updateRecipeService,
+  deleteRecipeService,
+  updateImageService,
 };
